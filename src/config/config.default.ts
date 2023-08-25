@@ -6,4 +6,11 @@ export default class Config {
   BASE_URL = import.meta.env.VUE_APP_BASE_URL
   // 后端API
   API = import.meta.env.VUE_APP_BASE_ROUTE + 'api'
+
+  // 本地存储key
+  storageKey = {
+    token: 'arco_token',
+  }
+  // 存储过期时间 5day
+  storageExpire = 5 * 24 * 60 * 60
 }

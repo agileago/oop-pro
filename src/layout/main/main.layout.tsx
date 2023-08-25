@@ -2,7 +2,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { VueComponent } from 'vue3-oop'
 import RightIcon from './right.svg?component'
 
-export default class DefaultLayout extends VueComponent {
+export default class MainLayout extends VueComponent {
   render() {
     return (
       <>

@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "@abraham/reflection": "^0.12.0",
-    "ant-design-vue": "^4.0.0",
+    "@arco-design/web-vue": "^2.50.1",
+    "@vueuse/core": "^10.3.0",
     "axios": "1.4.0",
+    "expired-storage": "^1.0.2",
     "injection-js": "^2.4.0",
     "path-to-regexp": "^6.2.1",
     "ts-essentials": "^9.3.2",
@@ -25,10 +27,12 @@
     "vue3-oop": "^1.0.4"
   },
   "devDependencies": {
+    "@arco-plugins/vite-vue": "^1.4.5",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/expired-storage": "^1.0.1",
     "@types/lodash": "^4.14.197",
     "@types/prettier": "^2.7.2",
     "@types/swagger-schema-official": "^2.0.22",
