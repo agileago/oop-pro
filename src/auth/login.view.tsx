@@ -1,7 +1,7 @@
 import { LayoutFooter } from '@arco-design/web-vue'
 import { VueComponent } from 'vue3-oop'
-import { Banner } from '@/auth/login/banner'
-import { LoginForm } from './login/form'
+import { Banner } from './banner'
+import { LoginForm } from './form'
 import logo from '@/assets/logo.svg'
 
 export default class LoginView extends VueComponent {

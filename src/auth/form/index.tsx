@@ -13,11 +13,6 @@ import { FormService } from '@/common/service/form.service'
 import { IconLock, IconUser } from '@arco-design/web-vue/es/icon'
 import { UserService } from '@/auth/user.service'
 
-// interface UserForm {
-//   username: string
-//   password: string
-// }
-
 @Autobind()
 export class LoginForm extends VueComponent {
   us = injectService(UserService)
