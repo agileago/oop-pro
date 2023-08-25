@@ -1,4 +1,6 @@
 name: 发布到github pages
+permissions:
+  contents: write
 on:
   push:
     branches:
