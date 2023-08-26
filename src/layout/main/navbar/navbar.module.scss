@@ -1,0 +1,14 @@
+.message-popover {
+  :global {
+    .arco-popover-content {
+      margin-top: 0;
+    }
+  }
+}
+.rightSlide {
+  :global {
+    .locale-select {
+      border-radius: 20px;
+    }
+  }
+}

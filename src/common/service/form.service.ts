@@ -48,7 +48,7 @@ export class FormService<T extends Record<string, any>> extends VueService {
       await this.option.onSubmitSuccess?.(model)
     } catch (e: any) {
       console.error(e)
-      Message.error(e.message || '失败')
+      Message.error(e.message || '服务错误')
     } finally {
       this.loading = false
     }

@@ -20,6 +20,7 @@ let routes: RouteRecordRaw[] = [
     path: '/',
     name: 'main',
     component: () => import('@/layout/main/main.layout'),
+    redirect: '/home',
     children: [],
   },
 ]

@@ -2,11 +2,11 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/demo/home',
+    path: '/home',
     component: () => import('./home/home.view'),
   },
   {
-    path: '/demo/count',
+    path: '/count',
     component: () => import('./count/count.view'),
   },
 ]

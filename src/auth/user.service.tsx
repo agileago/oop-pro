@@ -2,6 +2,9 @@ import { Autobind, VueService } from 'vue3-oop'
 import { useRouter } from 'vue-router'
 import { storage } from '@/common/util/storage'
 import config from '@/config'
+import { Message } from '@arco-design/web-vue'
+import type { IMenuItem } from '@/types'
+import { IconDashboard, IconLink } from '@arco-design/web-vue/es/icon'
 
 function delay(timeout = 300) {
   return new Promise(r => setTimeout(r, timeout))
@@ -17,6 +20,21 @@ export class UserService extends VueService {
 
   token = storage.getItem(config.storageKey.token)
 
+  // 用户菜单
+  menus: IMenuItem[] = [
+    {
+      name: '仪表盘',
+      icon: <IconDashboard />,
+      children: [{ name: '工作台', path: '/dashboard/workplace' }],
+    },
+    {
+      name: 'Arco Design',
+      path: 'https://arco.design',
+      isLink: true,
+      icon: <IconLink />,
+    },
+  ]
+
   guardRouter() {
     const { router } = this
     router.beforeEach(async to => {
@@ -30,6 +48,7 @@ export class UserService extends VueService {
     await delay(4000)
     this.token = Math.random().toString()
     storage.setItem(config.storageKey.token, this.token, config.storageExpire)
-    this.router.replace('/')
+    Message.success('欢迎使用')
+    this.router.replace({ name: 'Workplace' })
   }
 }

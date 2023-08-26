@@ -21,6 +21,9 @@ body {
     'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'miui',
     'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
 }
+#app {
+  height: 100%;
+}
 
 .echarts-tooltip-diy {
   background: linear-gradient(
