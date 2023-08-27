@@ -17,6 +17,7 @@ jobs:
           npm i pnpm -g
           pnpm install
           pnpm run build --mode master
+          cp dist/index.html dist/404.html
 
       - name: 部署 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
