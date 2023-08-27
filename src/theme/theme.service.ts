@@ -31,7 +31,7 @@ export class ThemeService extends VueService {
     colorWeak: false,
     navbar: true,
     menu: true,
-    topMenu: true,
+    topMenu: false,
     hideMenu: false,
     menuCollapse: false,
     footer: true,

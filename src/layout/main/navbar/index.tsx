@@ -1,21 +1,27 @@
-import { injectService, VueComponent, Link } from 'vue3-oop'
+import { injectService, Link, VueComponent } from 'vue3-oop'
 import logo from '@/assets/logo.svg'
 import {
+  Avatar,
   Badge,
   Button,
+  Doption,
+  Dropdown,
   Popover,
   Space,
   Tooltip,
   TypographyTitle,
 } from '@arco-design/web-vue'
 import {
+  IconExport,
   IconFullscreen,
   IconFullscreenExit,
   IconMenuFold,
   IconMoonFill,
   IconNotification,
   IconSearch,
+  IconSettings,
   IconSunFill,
+  IconUser,
 } from '@arco-design/web-vue/es/icon'
 import { ThemeService } from '@/theme/theme.service'
 import { If } from '@/common/component/if'
@@ -153,6 +159,42 @@ export class Navbar extends VueComponent {
                 </If>
               </Button>
             </Tooltip>
+          </li>
+          <li class={css.li}>
+            <Dropdown trigger={'click'}>
+              {{
+                default: () => (
+                  <Avatar size={32} class={'mr-2 cursor-pointer'}>
+                    <img
+                      alt="avatar"
+                      src="//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"
+                    />
+                  </Avatar>
+                ),
+                content: () => (
+                  <>
+                    <Doption>
+                      <Space>
+                        <IconUser></IconUser>
+                        <span>用户中心</span>
+                      </Space>
+                    </Doption>
+                    <Doption>
+                      <Space>
+                        <IconSettings></IconSettings>
+                        <span>用户设置</span>
+                      </Space>
+                    </Doption>
+                    <Doption>
+                      <Space>
+                        <IconExport></IconExport>
+                        <span>登出登录</span>
+                      </Space>
+                    </Doption>
+                  </>
+                ),
+              }}
+            </Dropdown>
           </li>
         </ul>
       </div>

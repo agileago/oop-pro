@@ -5,10 +5,7 @@ import config from '@/config'
 import { Message } from '@arco-design/web-vue'
 import type { IMenuItem } from '@/types'
 import { IconDashboard, IconLink } from '@arco-design/web-vue/es/icon'
-
-function delay(timeout = 300) {
-  return new Promise(r => setTimeout(r, timeout))
-}
+import { delay } from '@/common/util'
 
 @Autobind()
 export class UserService extends VueService {
