@@ -30,7 +30,7 @@ export default class MainLayout extends VueComponent {
                 width={theme.menuWidth}
                 hideTrigger
                 onCollapse={val => (theme.menuCollapse = val)}
-                class={`${styles.layoutSider} pt-[60px]`}
+                class={`${styles.layoutSider} !pt-[60px]`}
               >
                 <div class={`${styles.menuWrapper}`}>
                   <NavMenu></NavMenu>

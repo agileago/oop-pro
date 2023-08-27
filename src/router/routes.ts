@@ -11,7 +11,7 @@ let routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/auth/login.view'),
+    component: () => import('@/auth/login/login.view'),
     meta: {
       auth: false,
     },
