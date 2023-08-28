@@ -4,20 +4,26 @@ import config from '@/config'
 
 export interface ThemeConfig {
   theme: 'light' | 'dark'
+  /* 色弱模式 */
   colorWeak: boolean
+  /* 是否有顶部菜单栏，通常用于系统嵌入其他系统 */
   navbar: boolean
+  /* 是否有左侧菜单栏 */
   menu: boolean
+  /* 菜单是否在顶部 */
   topMenu: boolean
+  /* 是否隐藏抽屉菜单，主要在移动端上 */
   hideMenu: boolean
+  /* 菜单是否折叠 */
   menuCollapse: boolean
+  /* 是否显示底部条 */
   footer: boolean
   themeColor: string
   menuWidth: number
   globalSettings: boolean
   device: 'desktop' | 'mobile'
+  /* 是否显示菜单历史记录 */
   tabBar: boolean
-  menuFromServer: boolean
-  serverMenu: any[]
 }
 
 @Autobind()
@@ -40,8 +46,6 @@ export class ThemeService extends VueService {
     globalSettings: false,
     device: 'desktop',
     tabBar: false,
-    menuFromServer: false,
-    serverMenu: [],
   }
 
   isDark = useDark({
@@ -51,6 +55,7 @@ export class ThemeService extends VueService {
     valueLight: 'light',
     storageKey: config.storageKey.theme,
     onChanged: (dark: boolean) => {
+      // 这里会立即执行
       this.toggleTheme(dark)
     },
   })

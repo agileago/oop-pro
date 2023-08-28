@@ -13,6 +13,7 @@ export class UserService extends VueService {
     super()
     this.guardRouter()
   }
+
   router = useRouter()
 
   token = storage.getItem(config.storageKey.token)
@@ -47,5 +48,10 @@ export class UserService extends VueService {
     storage.setItem(config.storageKey.token, this.token, config.storageExpire)
     Message.success('欢迎使用')
     this.router.replace({ name: 'Workplace' })
+  }
+
+  logout() {
+    storage.removeItem(config.storageKey.token)
+    location.href = config.BASE_ROUTE + 'login'
   }
 }

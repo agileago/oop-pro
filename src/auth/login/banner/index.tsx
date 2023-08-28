@@ -21,7 +21,7 @@ const carouselItem = [
 
 export function Banner() {
   return (
-    <div class="w-1/4 bg-[linear-gradient(163.85deg,#1d2129_0%,#00308f_100%)] lg:w-[550px]">
+    <div class="hidden bg-[linear-gradient(163.85deg,#1d2129_0%,#00308f_100%)] sm:block sm:w-[300px] lg:w-[550px]">
       <div class="h-full flex-1">
         <Carousel class="h-full" animationName="fade">
           {carouselItem.map(item => {

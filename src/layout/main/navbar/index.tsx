@@ -1,5 +1,4 @@
 import { injectService, Link, VueComponent } from 'vue3-oop'
-import logo from '@/assets/logo.svg'
 import {
   Avatar,
   Badge,
@@ -26,9 +25,11 @@ import {
 import { ThemeService } from '@/theme/theme.service'
 import { If } from '@/common/component/if'
 import { NavMenu } from '@/layout/main/navmenu'
-import { useFullscreen, useToggle } from '@vueuse/core'
+import { useFullscreen } from '@vueuse/core'
 import styles from './navbar.module.scss'
 import { MessageBox } from '../message-box'
+import { UserService } from '@/auth/user.service'
+import config from '@/config'
 
 const css = {
   navBtn: `!border-[rgb(var(--gray-2))] !text-[16px] !text-[rgb(var(--gray-8))]`,
@@ -37,10 +38,9 @@ const css = {
 
 export class Navbar extends VueComponent {
   ts = injectService(ThemeService)
+  us = injectService(UserService)
 
   fullScreen = useFullscreen()
-
-  toggleTheme = useToggle(this.ts.isDark)
 
   @Link() refBtn!: HTMLDivElement
 
@@ -55,6 +55,7 @@ export class Navbar extends VueComponent {
 
   render() {
     const { ts, fullScreen } = this
+    const { theme } = ts
     return (
       <div
         class={
@@ -63,13 +64,13 @@ export class Navbar extends VueComponent {
       >
         <div class="flex items-center pl-5">
           <Space>
-            <img alt="logo" src={logo} />
+            <img alt="logo" src={config.site.logo} />
             <TypographyTitle class={'!m-0 !text-[18px]'} heading={5}>
-              Arco Pro
+              {config.site.name}
             </TypographyTitle>
-            <If condition={ts.theme.device === 'mobile'}>
+            <If condition={!theme.topMenu}>
               <IconMenuFold
-                class={'cursor-pointer text-[22px]'}
+                class={'cursor-pointer text-[22px] lg:hidden'}
                 onClick={ts.toggleDrawerMenu}
               ></IconMenuFold>
             </If>
@@ -91,21 +92,21 @@ export class Navbar extends VueComponent {
           <li class={css.li}>
             <Tooltip
               content={
-                ts.theme.theme === 'light'
+                !this.ts.isDark.value
                   ? '点击切换为暗黑模式'
                   : '点击切换为亮色模式'
               }
             >
               <Button
-                onClick={() => this.toggleTheme()}
+                onClick={() => (this.ts.isDark.value = !this.ts.isDark.value)}
                 type={'outline'}
                 shape={'circle'}
                 class={css.navBtn}
               >
-                <If condition={ts.theme.theme === 'dark'}>
+                <If condition={this.ts.isDark.value}>
                   <IconMoonFill />
                 </If>
-                <If condition={ts.theme.theme === 'light'}>
+                <If condition={!this.ts.isDark.value}>
                   <IconSunFill />
                 </If>
               </Button>
@@ -185,7 +186,7 @@ export class Navbar extends VueComponent {
                         <span>用户设置</span>
                       </Space>
                     </Doption>
-                    <Doption>
+                    <Doption onClick={this.us.logout}>
                       <Space>
                         <IconExport></IconExport>
                         <span>登出登录</span>

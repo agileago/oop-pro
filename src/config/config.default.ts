@@ -1,3 +1,4 @@
+import logo from '@/assets/logo.svg'
 export default class Config {
   env = import.meta.env.MODE
   // 基础路由 /app/
@@ -10,8 +11,15 @@ export default class Config {
   // 本地存储key
   storageKey = {
     token: 'arco_token',
-    theme: 'arco-theme',
+    theme: 'arco_theme',
+    loginConf: 'arco_login_conf',
   }
   // 存储过期时间 5day
   storageExpire = 5 * 24 * 60 * 60
+
+  site = {
+    logo,
+    name: 'Arco Design Pro',
+    foot: 'Arco Pro',
+  }
 }

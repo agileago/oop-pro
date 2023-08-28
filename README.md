@@ -1,4 +1,14 @@
-# vite vue3 前端基础模板
+# Arco Design Pro Tsx版本
+
+## 特点
+
+- 去除国际化，只支持中文
+- 使用类组件(vue3-oop)
+- 使用 TSX
+- 去除pinia, 使用依赖注入(vue3-oop提供)
+- 更合理的目录结构
+- 更加完善的封装(service)
+- 自动化生成请求api代码
 
 ### 工具
 

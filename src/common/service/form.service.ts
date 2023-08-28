@@ -61,7 +61,7 @@ export class FormService<T extends Record<string, any>> extends VueService {
     },
   ) {
     super()
-    this.model = option.model
     this.originalModel = JSON.parse(JSON.stringify(option.model))
+    this.model = option.model
   }
 }

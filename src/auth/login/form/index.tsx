@@ -1,4 +1,4 @@
-import { Autobind, injectService, Mut, VueComponent } from 'vue3-oop'
+import { Autobind, injectService, VueComponent } from 'vue3-oop'
 import {
   Button,
   Checkbox,
@@ -12,25 +12,43 @@ import {
 import { FormService } from '@/common/service/form.service'
 import { IconLock, IconUser } from '@arco-design/web-vue/es/icon'
 import { UserService } from '@/auth/user.service'
+import { useStorage } from '@vueuse/core'
+import config from '@/config'
 
 @Autobind()
 export class LoginForm extends VueComponent {
   us = injectService(UserService)
 
+  loginConf = useStorage(config.storageKey.loginConf, {
+    username: '',
+    password: '',
+    rememberPassword: true,
+  })
+
   fs = new FormService({
-    model: {
-      username: '',
-      password: '',
-    },
+    model: this.loginConf.value.rememberPassword
+      ? {
+          username: this.loginConf.value.username,
+          password: this.loginConf.value.password,
+        }
+      : { username: '', password: '' },
     rules: {
       username: [{ required: true, message: '用户名不能为空' }],
       password: [{ required: true, message: '密码不能为空' }],
     },
-    layout: 'vertical',
-    onSubmitSuccess: this.us.login,
+    onSubmitSuccess: async model => {
+      await this.us.login(model)
+      // 存储账号密码
+      if (this.loginConf.value.rememberPassword) {
+        this.loginConf.value.username = this.fs.model.username
+        this.loginConf.value.password = this.fs.model.password
+      } else {
+        // 清空数据
+        this.loginConf.value.username = ''
+        this.loginConf.value.password = ''
+      }
+    },
   })
-
-  @Mut() rememberPassword = false
 
   render() {
     const { fs } = this
@@ -43,7 +61,7 @@ export class LoginForm extends VueComponent {
           登录 Arco Design Pro
         </div>
         <div class="h-8 leading-8 text-[rgb(var(--red-6))]"></div>
-        <Form {...fs.formProps}>
+        <Form {...fs.formProps} layout={'vertical'}>
           <FormItem field={fs.formItemNames.username} hideLabel>
             <Input
               v-model={fs.model.username}
@@ -62,7 +80,9 @@ export class LoginForm extends VueComponent {
           </FormItem>
           <Space size={16} direction={'vertical'}>
             <div class={'flex justify-between'}>
-              <Checkbox v-model={this.rememberPassword}>记住密码</Checkbox>
+              <Checkbox v-model={this.loginConf.value.rememberPassword}>
+                记住密码
+              </Checkbox>
               <Link>忘记密码</Link>
             </div>
             <Button
