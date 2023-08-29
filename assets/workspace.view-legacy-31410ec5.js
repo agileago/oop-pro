@@ -1,1 +1,0 @@
-System.register(["./index-legacy-30253e8b.js"],(function(e,t){"use strict";var r,s,n;return{setters:[e=>{r=e.W,s=e.l,n=e.J}],execute:function(){e("default",class extends r{render(){return s("div",null,[n("workspace")])}})}}}));
