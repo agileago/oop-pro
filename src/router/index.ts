@@ -7,6 +7,18 @@ export function createMainRouter() {
   const router = createRouter({
     history,
     routes,
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition
+      } else {
+        return { top: 0 }
+      }
+    },
+  })
+
+  // 设置页面标题
+  router.afterEach(to => {
+    document.title = to.meta.title || config.site.name
   })
 
   return {

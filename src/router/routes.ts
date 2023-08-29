@@ -4,6 +4,10 @@ declare module 'vue-router' {
   interface RouteMeta {
     /*是否需要权限*/
     auth?: boolean
+    /* 页面标题 */
+    title?: string
+    /* 是否在tabbar上面展示 */
+    tabbar?: boolean
   }
 }
 
@@ -14,13 +18,14 @@ let routes: RouteRecordRaw[] = [
     component: () => import('@/auth/login/login.view'),
     meta: {
       auth: false,
+      title: '欢迎登录',
     },
   },
   {
     path: '/',
     name: 'main',
     component: () => import('@/layout/main/main.layout'),
-    redirect: '/home',
+    redirect: { name: 'Workplace' },
     children: [],
   },
 ]

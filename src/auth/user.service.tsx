@@ -23,7 +23,10 @@ export class UserService extends VueService {
     {
       name: '仪表盘',
       icon: <IconDashboard />,
-      children: [{ name: '工作台', path: '/dashboard/workplace' }],
+      children: [
+        { name: '工作台', path: '/dashboard/workplace' },
+        { name: '实时监控', path: '/dashboard/monit' },
+      ],
     },
     {
       name: 'Arco Design',

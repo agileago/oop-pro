@@ -1,0 +1,13 @@
+.tagsWrap {
+  :global(.arco-tag) {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 6px;
+    cursor: pointer;
+    &:first-child {
+      :global(.arco-tag-close-btn) {
+        display: none;
+      }
+    }
+  }
+}

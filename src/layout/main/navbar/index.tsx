@@ -70,7 +70,7 @@ export class Navbar extends VueComponent {
             </TypographyTitle>
             <If condition={!theme.topMenu}>
               <IconMenuFold
-                class={'cursor-pointer text-[22px] lg:hidden'}
+                class={'cursor-pointer text-[22px] md:hidden'}
                 onClick={ts.toggleDrawerMenu}
               ></IconMenuFold>
             </If>

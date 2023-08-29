@@ -13,6 +13,7 @@ export default class Config {
     token: 'arco_token',
     theme: 'arco_theme',
     loginConf: 'arco_login_conf',
+    tagList: 'arco_tag_list',
   }
   // 存储过期时间 5day
   storageExpire = 5 * 24 * 60 * 60
