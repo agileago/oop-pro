@@ -68,7 +68,7 @@ export class Navbar extends VueComponent {
             <TypographyTitle class={'!m-0 !text-[18px]'} heading={5}>
               {config.site.name}
             </TypographyTitle>
-            <If condition={!theme.topMenu}>
+            <If condition={!theme.topMenu && ts.isMobile.value}>
               <IconMenuFold
                 class={'cursor-pointer text-[22px] md:hidden'}
                 onClick={ts.toggleDrawerMenu}
