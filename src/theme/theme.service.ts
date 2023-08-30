@@ -98,8 +98,17 @@ export class ThemeService extends VueService {
   isMobile = this.breakpoint.smaller('md')
   sizeChange() {
     const isMobile = this.isMobile.value
+    console.log(1111, isMobile)
     this.theme.device = isMobile ? 'mobile' : 'desktop'
     this.theme.hideMenu = isMobile
+    if (isMobile) this.theme.menuCollapse = false
+  }
+
+  /*刷新页面*/
+  @Mut() pageKey = Math.random()
+
+  refreshPageKey() {
+    this.pageKey = Math.random()
   }
 
   toggleDrawerMenu() {

@@ -11,9 +11,10 @@ import { If } from '@/common/component/if'
 import styles from './main.module.scss'
 import { NavMenu } from './navmenu'
 import { RouterView } from 'vue-router'
-import { Suspense, Transition } from 'vue'
+import { Suspense } from 'vue'
 import { Tabbar } from './tabbar'
 import { Footer } from '@/layout/main/footer'
+import { TransitionFade } from '@morev/vue-transitions'
 
 export default class MainLayout extends VueComponent {
   ts = injectService(ThemeService)
@@ -57,8 +58,10 @@ export default class MainLayout extends VueComponent {
               <Drawer
                 visible={theme.drawerVisible}
                 placement={'left'}
+                header={false}
                 footer={false}
                 maskClosable
+                closable={false}
                 onCancel={() => (theme.drawerVisible = false)}
               >
                 <NavMenu></NavMenu>
@@ -79,11 +82,13 @@ export default class MainLayout extends VueComponent {
                     default: ({ Component, route }: any) => {
                       if (!Component) return null
                       return (
-                        <Transition name={'fade'} mode={'out-in'} appear>
+                        <TransitionFade mode={'out-in'} appear>
                           <Suspense>
-                            <Component key={route.fullPath}></Component>
+                            <Component
+                              key={route.fullPath + ts.pageKey}
+                            ></Component>
                           </Suspense>
-                        </Transition>
+                        </TransitionFade>
                       )
                     },
                   }}

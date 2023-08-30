@@ -1,11 +1,11 @@
-import { Autobind, injectService, Mut, VueComponent } from 'vue3-oop'
+import { Autobind, Computed, injectService, Mut, VueComponent } from 'vue3-oop'
 import { Link, Menu, MenuItem, SubMenu } from '@arco-design/web-vue'
 import { ThemeService } from '@/theme/theme.service'
 import { UserService } from '@/auth/user.service'
 import type { IMenuItem } from '@/types'
 import type { VNodeChild } from 'vue'
 import { If } from '@/common/component/if'
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { watch } from 'vue'
 
 @Autobind()
@@ -13,20 +13,19 @@ export class NavMenu extends VueComponent {
   ts = injectService(ThemeService)
   us = injectService(UserService)
   router = useRouter()
+  route = useRoute()
+  theme = this.ts.theme
 
   constructor() {
     super()
-    watch(() => this.router.currentRoute.value, this.refreshKey, {
-      immediate: true,
-    })
+    watch(() => this.route.path, this.refreshKey)
   }
 
   refreshKey() {
-    // const path = this.router.currentRoute.value.fullPath
+    this.selectedKey = [this.route.path]
   }
 
-  @Mut() openKeys: string[] = []
-  @Mut() selectedKey: string[] = []
+  @Mut() selectedKey: string[] = [this.route.path]
 
   handleMenuClick(menuItem: IMenuItem) {
     console.log(menuItem)
@@ -53,7 +52,7 @@ export class NavMenu extends VueComponent {
             )
           } else {
             node = (
-              <MenuItem key={element.name} v-slots={{ icon }}>
+              <MenuItem key={element.path} v-slots={{ icon }}>
                 <If condition={!element.isLink}>
                   <RouterLink
                     to={element.path!}
@@ -83,22 +82,37 @@ export class NavMenu extends VueComponent {
     return travel(this.us.menus)
   }
 
+  setCollapse(val: boolean) {
+    if (!this.ts.isMobile) {
+      this.theme.menuCollapse = val
+    }
+  }
+
+  @Computed()
+  get collapse() {
+    if (this.ts.isMobile.value) return false
+    return this.theme.menuCollapse
+  }
+
+  set collapse(val: boolean) {
+    this.theme.menuCollapse = val
+  }
+
   render() {
-    const { ts } = this
-    const { theme } = ts
+    const { theme } = this
+    console.log('aaaa', theme.menuCollapse)
     return (
       <Menu
         mode={theme.topMenu ? 'horizontal' : 'vertical'}
-        v-model:collapsed={theme.menuCollapse}
-        v-model:openKeys={this.openKeys}
+        v-model:collapsed={this.collapse}
         // @ts-ignore
-        showCollapseButton={theme.device !== 'mobile'}
+        showCollapseButton={!this.ts.isMobile.value}
         autoOpen={false}
         selectedKeys={this.selectedKey}
         autoOpenSelected
         levelIndent={34}
-        class={'h-full w-full'}
-        onCollapse={(val: boolean) => (theme.menuCollapse = val)}
+        class={'!h-full !w-full'}
+        onCollapse={this.setCollapse}
       >
         {this.renderSubMenu()}
       </Menu>

@@ -4,7 +4,7 @@ import { storage } from '@/common/util/storage'
 import config from '@/config'
 import { Message } from '@arco-design/web-vue'
 import type { IMenuItem } from '@/types'
-import { IconDashboard, IconLink } from '@arco-design/web-vue/es/icon'
+import { IconDashboard, IconLink, IconList } from '@arco-design/web-vue/es/icon'
 import { delay } from '@/common/util'
 
 @Autobind()
@@ -22,17 +22,25 @@ export class UserService extends VueService {
   menus: IMenuItem[] = [
     {
       name: '仪表盘',
-      icon: <IconDashboard />,
+      icon: <IconDashboard size={18} />,
       children: [
         { name: '工作台', path: '/dashboard/workplace' },
         { name: '实时监控', path: '/dashboard/monit' },
       ],
     },
     {
+      name: '列表页',
+      icon: <IconList size={18} />,
+      children: [
+        { name: '查询表格', path: '/list/search-table' },
+        { name: '卡片列表', path: '/list/card' },
+      ],
+    },
+    {
       name: 'Arco Design',
       path: 'https://arco.design',
       isLink: true,
-      icon: <IconLink />,
+      icon: <IconLink size={18} />,
     },
   ]
 
