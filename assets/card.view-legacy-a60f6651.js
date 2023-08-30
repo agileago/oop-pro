@@ -1,0 +1,1 @@
+System.register(["./index-legacy-af031cc2.js"],(function(e,t){"use strict";var r,n,s;return{setters:[e=>{r=e.W,n=e.l,s=e.J}],execute:function(){e("default",class extends r{render(){return n("div",null,[s("card")])}})}}}));
