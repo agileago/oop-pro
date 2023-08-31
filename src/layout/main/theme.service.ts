@@ -118,5 +118,15 @@ export class ThemeService extends VueService {
   constructor() {
     super()
     watch(this.isMobile, this.sizeChange, { immediate: true })
+    // 色弱模式
+    watch(
+      () => this.theme.colorWeak,
+      () => {
+        document.body.style.filter = this.theme.colorWeak
+          ? 'invert(80%)'
+          : 'none'
+      },
+      { immediate: true },
+    )
   }
 }

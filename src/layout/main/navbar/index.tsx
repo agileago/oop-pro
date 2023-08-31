@@ -162,6 +162,18 @@ export class Navbar extends VueComponent {
             </Tooltip>
           </li>
           <li class={css.li}>
+            <Tooltip content={'设置'}>
+              <Button
+                type={'outline'}
+                shape={'circle'}
+                class={css.navBtn}
+                onClick={() => (theme.globalSettings = true)}
+              >
+                <IconSettings />
+              </Button>
+            </Tooltip>
+          </li>
+          <li class={css.li}>
             <Dropdown trigger={'click'}>
               {{
                 default: () => (

@@ -15,6 +15,7 @@ import { Suspense } from 'vue'
 import { Tabbar } from './tabbar'
 import { Footer } from '@/layout/main/footer'
 import { TransitionFade } from '@morev/vue-transitions'
+import { Setting } from '@/layout/main/setting'
 
 @Component()
 export default class MainLayout extends VueComponent {
@@ -28,6 +29,7 @@ export default class MainLayout extends VueComponent {
 
     return (
       <Layout class={'h-full w-full'}>
+        <Setting></Setting>
         <If condition={theme.navbar}>
           <div
             class={'fixed left-0 top-0 z-[100] w-full'}

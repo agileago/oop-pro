@@ -52,10 +52,15 @@ export class UserService extends VueService {
       ],
     },
     {
-      name: 'Arco Design',
-      path: 'https://arco.design',
-      isLink: true,
+      name: '外部链接',
       icon: <IconLink size={18} />,
+      children: [
+        {
+          name: 'Arco Design',
+          path: 'https://arco.design',
+          isLink: true,
+        },
+      ],
     },
   ]
   // 末尾菜单路径对应的打开菜单的key
