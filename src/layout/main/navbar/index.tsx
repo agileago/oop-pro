@@ -22,7 +22,7 @@ import {
   IconSunFill,
   IconUser,
 } from '@arco-design/web-vue/es/icon'
-import { ThemeService } from '@/theme/theme.service'
+import { ThemeService } from '@/layout/main/theme.service'
 import { If } from '@/common/component/if'
 import { NavMenu } from '@/layout/main/navmenu'
 import { useFullscreen } from '@vueuse/core'

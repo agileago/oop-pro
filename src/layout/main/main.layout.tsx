@@ -1,4 +1,4 @@
-import { injectService, VueComponent } from 'vue3-oop'
+import { Component, VueComponent } from 'vue3-oop'
 import {
   Drawer,
   Layout,
@@ -6,7 +6,7 @@ import {
   LayoutSider,
 } from '@arco-design/web-vue'
 import { Navbar } from './navbar'
-import { ThemeService } from '@/theme/theme.service'
+import { ThemeService } from '@/layout/main/theme.service'
 import { If } from '@/common/component/if'
 import styles from './main.module.scss'
 import { NavMenu } from './navmenu'
@@ -16,8 +16,11 @@ import { Tabbar } from './tabbar'
 import { Footer } from '@/layout/main/footer'
 import { TransitionFade } from '@morev/vue-transitions'
 
+@Component()
 export default class MainLayout extends VueComponent {
-  ts = injectService(ThemeService)
+  constructor(private ts: ThemeService) {
+    super()
+  }
 
   render() {
     const { ts } = this
@@ -56,6 +59,7 @@ export default class MainLayout extends VueComponent {
             </If>
             <If condition={theme.hideMenu}>
               <Drawer
+                class={styles.drawer}
                 visible={theme.drawerVisible}
                 placement={'left'}
                 header={false}

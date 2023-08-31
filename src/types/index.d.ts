@@ -1,24 +1,14 @@
 import type { VNodeChild } from 'vue'
 
 export interface IMenuItem {
+  /* 菜单名称 */
   name: string
+  /* 菜单路由， 没有可不填 */
   path?: string
+  /* 菜单图标 */
   icon?: VNodeChild
   /* 是否外链 */
   isLink?: boolean
-
-  hide?: boolean
-
+  /* 子菜单 */
   children?: IMenuItem[]
-}
-
-export interface MessageRecord {
-  id: number
-  type: string
-  title: string
-  subTitle: string
-  avatar?: string
-  content: string
-  time: string
-  status: 0 | 1
 }

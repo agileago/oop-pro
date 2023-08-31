@@ -7,7 +7,7 @@ import {
   VueComponent,
 } from 'vue3-oop'
 import { Affix, Link as LinkC } from '@arco-design/web-vue'
-import { ThemeService } from '@/theme/theme.service'
+import { ThemeService } from '@/layout/main/theme.service'
 import { useRoute } from 'vue-router'
 import { watch } from 'vue'
 import { useStorage } from '@vueuse/core'

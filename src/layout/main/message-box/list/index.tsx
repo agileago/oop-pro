@@ -1,4 +1,4 @@
-import type { MessageRecord } from '@/types'
+import type { MessageRecord } from '../type'
 import {
   Avatar,
   Link,

@@ -7,6 +7,21 @@ import type { IMenuItem } from '@/types'
 import { IconDashboard, IconLink, IconList } from '@arco-design/web-vue/es/icon'
 import { delay } from '@/common/util'
 
+const findMenuOpenKeysMap = (menuTree: IMenuItem[]) => {
+  const result = new Map<string, string[]>()
+  const backtrack = (item: IMenuItem, keys: string[]) => {
+    if (item.children?.length) {
+      item.children.forEach(el => {
+        backtrack(el, [...keys, el.path || el.name])
+      })
+    } else {
+      if (item.path) result.set(item.path, keys)
+    }
+  }
+  menuTree.forEach(el => backtrack(el, [el.path || el.name]))
+  return result
+}
+
 @Autobind()
 export class UserService extends VueService {
   constructor() {
@@ -43,6 +58,8 @@ export class UserService extends VueService {
       icon: <IconLink size={18} />,
     },
   ]
+  // 末尾菜单路径对应的打开菜单的key
+  menusPathOpenKeys = findMenuOpenKeysMap(this.menus)
 
   guardRouter() {
     const { router } = this

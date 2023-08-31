@@ -1,10 +1,9 @@
 import { Autobind, Computed, injectService, Mut, VueComponent } from 'vue3-oop'
 import { Link, Menu, MenuItem, SubMenu } from '@arco-design/web-vue'
-import { ThemeService } from '@/theme/theme.service'
+import { ThemeService } from '@/layout/main/theme.service'
 import { UserService } from '@/auth/user.service'
 import type { IMenuItem } from '@/types'
 import type { VNodeChild } from 'vue'
-import { If } from '@/common/component/if'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { watch } from 'vue'
 
@@ -23,59 +22,55 @@ export class NavMenu extends VueComponent {
 
   refreshKey() {
     this.selectedKey = [this.route.path]
+    const newKeys = this.us.menusPathOpenKeys.get(this.route.path) || []
+    const openKeys = new Set([...newKeys, ...this.openKeys])
+    this.openKeys = [...openKeys]
   }
 
   @Mut() selectedKey: string[] = [this.route.path]
-
-  handleMenuClick(menuItem: IMenuItem) {
-    console.log(menuItem)
-    this.selectedKey = [menuItem.name]
-  }
+  @Mut() openKeys: string[] = (
+    this.us.menusPathOpenKeys.get(this.route.path) || []
+  ).concat()
 
   renderSubMenu() {
     const travel = (items: IMenuItem[], nodes = []) => {
-      if (items) {
-        items.forEach(element => {
-          const icon = element.icon ? () => element.icon : null
-          const hasChild = element.children && element.children.length > 0
+      for (const element of items) {
+        const icon = element.icon ? () => element.icon : null
+        const hasChild = element.children && element.children.length > 0
 
-          let node: VNodeChild
-          if (hasChild) {
+        let node: VNodeChild
+        if (hasChild) {
+          node = (
+            <SubMenu
+              key={element.path || element.name}
+              title={element.name}
+              v-slots={{ icon }}
+            >
+              {travel(element.children!)}
+            </SubMenu>
+          )
+        } else {
+          const menuDom = (
+            <MenuItem key={element.path || element.name} v-slots={{ icon }}>
+              {element.name}
+            </MenuItem>
+          )
+          if (element.isLink) {
             node = (
-              <SubMenu
-                key={element.name}
-                title={element.name}
-                v-slots={{ icon }}
-              >
-                {travel(element.children!)}
-              </SubMenu>
+              // @ts-ignore
+              <Link class={'block'} href={element.path} target={'_blank'}>
+                {menuDom}
+              </Link>
             )
           } else {
             node = (
-              <MenuItem key={element.path} v-slots={{ icon }}>
-                <If condition={!element.isLink}>
-                  <RouterLink
-                    to={element.path!}
-                    // @ts-ignore
-                    onClick={() => this.handleMenuClick(element)}
-                  >
-                    {element.name}
-                  </RouterLink>
-                </If>
-                <If condition={element.isLink}>
-                  <Link
-                    href={element.path}
-                    // @ts-ignore
-                    target={'_blank'}
-                  >
-                    {element.name}
-                  </Link>
-                </If>
-              </MenuItem>
+              <RouterLink to={element.path!} class={'block'}>
+                {menuDom}
+              </RouterLink>
             )
           }
-          nodes.push(node as never)
-        })
+        }
+        nodes.push(node as never)
       }
       return nodes
     }
@@ -93,18 +88,17 @@ export class NavMenu extends VueComponent {
     if (this.ts.isMobile.value) return false
     return this.theme.menuCollapse
   }
-
   set collapse(val: boolean) {
     this.theme.menuCollapse = val
   }
 
   render() {
     const { theme } = this
-    console.log('aaaa', theme.menuCollapse)
     return (
       <Menu
         mode={theme.topMenu ? 'horizontal' : 'vertical'}
         v-model:collapsed={this.collapse}
+        v-model:openKeys={this.openKeys}
         // @ts-ignore
         showCollapseButton={!this.ts.isMobile.value}
         autoOpen={false}

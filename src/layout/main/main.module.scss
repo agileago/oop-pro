@@ -43,3 +43,9 @@
     }
   }
 }
+
+.drawer {
+  :global(.arco-drawer-body) {
+    padding: 0;
+  }
+}

@@ -2,7 +2,7 @@ import { Autobind, Computed, Hook, Mut, VueComponent } from 'vue3-oop'
 import { Button, Result, Spin, TabPane, Tabs } from '@arco-design/web-vue'
 import { delay } from '@/common/util'
 import { If } from '@/common/component/if'
-import type { MessageRecord } from '@/types'
+import type { MessageRecord } from './type'
 import { MessageList } from '@/layout/main/message-box/list'
 import styles from './message-box.module.scss'
 
