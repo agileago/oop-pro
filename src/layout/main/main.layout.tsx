@@ -75,7 +75,7 @@ export default class MainLayout extends VueComponent {
                 width={theme.menuWidth}
                 hideTrigger
                 onCollapse={val => (theme.menuCollapse = val)}
-                class={`ease-[cubic-bezier(0.34, 0.69, 0.1, 1)] fixed left-0 top-0 z-[99] h-full transition-all duration-200 after:absolute after:right-[-1px] after:top-0 after:block after:h-full after:w-[1px] after:bg-[--color-border] after:content-[""] ${styles.layoutSider}`}
+                class={`ease-[cubic-bezier(0.34, 0.69, 0.1, 1)] !fixed left-0 top-0 z-[99] h-full transition-all duration-200 after:absolute after:right-[-1px] after:top-0 after:block after:h-full after:w-[1px] after:bg-[--color-border] after:content-[""] ${styles.layoutSider}`}
                 style={{
                   paddingTop: theme.navbar ? `${theme.navBarHeight}px` : '',
                 }}
