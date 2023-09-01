@@ -26,12 +26,21 @@ import { ThemeService } from '@/layout/main/theme.service'
 import { If } from '@/common/component/if'
 import { NavMenu } from '@/layout/main/navmenu'
 import { useFullscreen } from '@vueuse/core'
-import styles from './navbar.module.scss'
 import { MessageBox } from '../message-box'
 import { UserService } from '@/auth/user.service'
 import config from '@/config'
+import { createStyles, css } from '@/common/util/cssr'
 
-const css = {
+const styles = createStyles({
+  messagePopover: [
+    css('.arco-popover-content', {
+      marginTop: 0,
+    }),
+  ],
+  rightSlide: [css('.locale-select', { borderRadius: '20px' })],
+})
+
+const cssReuse = {
   navBtn: `!border-[rgb(var(--gray-2))] !text-[16px] !text-[rgb(var(--gray-8))]`,
   li: 'flex items-center px-[10px]',
 }
@@ -82,14 +91,14 @@ export class Navbar extends VueComponent {
           </If>
         </div>
         <ul class={`flex list-none pr-5 ${styles.rightSlide}`}>
-          <li class={css.li}>
+          <li class={cssReuse.li}>
             <Tooltip content={'搜索'}>
-              <Button type={'outline'} shape={'circle'} class={css.navBtn}>
+              <Button type={'outline'} shape={'circle'} class={cssReuse.navBtn}>
                 <IconSearch />
               </Button>
             </Tooltip>
           </li>
-          <li class={css.li}>
+          <li class={cssReuse.li}>
             <Tooltip
               content={
                 !this.ts.isDark.value
@@ -101,7 +110,7 @@ export class Navbar extends VueComponent {
                 onClick={() => (this.ts.isDark.value = !this.ts.isDark.value)}
                 type={'outline'}
                 shape={'circle'}
-                class={css.navBtn}
+                class={cssReuse.navBtn}
               >
                 <If condition={this.ts.isDark.value}>
                   <IconMoonFill />
@@ -112,7 +121,7 @@ export class Navbar extends VueComponent {
               </Button>
             </Tooltip>
           </li>
-          <li class={css.li}>
+          <li class={cssReuse.li}>
             <Tooltip content={'消息通知'}>
               <div>
                 <Badge count={9} dot>
@@ -120,7 +129,7 @@ export class Navbar extends VueComponent {
                     onClick={this.setPopoverVisible}
                     type={'outline'}
                     shape={'circle'}
-                    class={css.navBtn}
+                    class={cssReuse.navBtn}
                   >
                     <IconNotification />
                   </Button>
@@ -138,7 +147,7 @@ export class Navbar extends VueComponent {
               <div class={'absolute bottom-[14px]'} ref={'refBtn'}></div>
             </Popover>
           </li>
-          <li class={css.li}>
+          <li class={cssReuse.li}>
             <Tooltip
               content={
                 fullScreen.isFullscreen.value
@@ -150,7 +159,7 @@ export class Navbar extends VueComponent {
                 onClick={fullScreen.toggle}
                 type={'outline'}
                 shape={'circle'}
-                class={css.navBtn}
+                class={cssReuse.navBtn}
               >
                 <If condition={fullScreen.isFullscreen.value}>
                   <IconFullscreenExit />
@@ -161,19 +170,19 @@ export class Navbar extends VueComponent {
               </Button>
             </Tooltip>
           </li>
-          <li class={css.li}>
+          <li class={cssReuse.li}>
             <Tooltip content={'设置'}>
               <Button
                 type={'outline'}
                 shape={'circle'}
-                class={css.navBtn}
+                class={cssReuse.navBtn}
                 onClick={() => (theme.globalSettings = true)}
               >
                 <IconSettings />
               </Button>
             </Tooltip>
           </li>
-          <li class={css.li}>
+          <li class={cssReuse.li}>
             <Dropdown trigger={'click'}>
               {{
                 default: () => (

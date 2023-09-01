@@ -12,9 +12,24 @@ import { useRoute } from 'vue-router'
 import { watch } from 'vue'
 import { useStorage } from '@vueuse/core'
 import config from '@/config'
-import styles from './tabbar.module.scss'
 import { TabBarItem } from './item'
 import { IconRefresh } from '@arco-design/web-vue/es/icon'
+import { createStyles, css } from '@/common/util/cssr'
+
+const styles = createStyles({
+  tagsWrap: [
+    css(
+      '.arco-tag',
+      {
+        display: 'inline-flex',
+        alignItems: 'center',
+        marginRight: '6px',
+        cursor: 'pointer',
+      },
+      [css('&:first-child', [css('.arco-tag-close-btn', { display: 'none' })])],
+    ),
+  ],
+})
 
 export interface TagProps {
   title: string

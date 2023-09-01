@@ -20,6 +20,9 @@ dependencies:
   axios:
     specifier: 1.5.0
     version: 1.5.0
+  css-render:
+    specifier: ^0.15.12
+    version: 0.15.12
   expired-storage:
     specifier: ^1.0.2
     version: 1.0.2
@@ -48,8 +51,8 @@ dependencies:
     specifier: ^4.2.4
     version: 4.2.4(vue@3.3.4)
   vue3-oop:
-    specifier: ^1.0.5
-    version: 1.0.5(injection-js@2.4.0)(vue@3.3.4)
+    specifier: ^1.0.6
+    version: 1.0.6(injection-js@2.4.0)(vue@3.3.4)
 
 devDependencies:
   '@arco-plugins/vite-vue':
@@ -2064,6 +2067,10 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
+  /@emotion/hash@0.8.0:
+    resolution: {integrity: sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==}
+    dev: false
+
   /@esbuild/android-arm64@0.18.20:
     resolution: {integrity: sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==}
     engines: {node: '>=12'}
@@ -3725,6 +3732,13 @@ packages:
       postcss: 8.4.29
     dev: true
 
+  /css-render@0.15.12:
+    resolution: {integrity: sha512-eWzS66patiGkTTik+ipO9qNGZ+uNuGyTmnz6/+EJIiFg8+3yZRpnMwgFo8YdXhQRsiePzehnusrxVvugNjXzbw==}
+    dependencies:
+      '@emotion/hash': 0.8.0
+      csstype: 3.0.11
+    dev: false
+
   /css-select@5.1.0:
     resolution: {integrity: sha512-nwoRF1rvRRnnCqqY7updORDsuqKzqYJ28+oSMaJMMgOauh3fvwHqMS7EZpIPqK8GL+g9mKxF1vP/ZjSeNjEVHg==}
     dependencies:
@@ -3771,6 +3785,10 @@ packages:
     dependencies:
       css-tree: 2.2.1
     dev: true
+
+  /csstype@3.0.11:
+    resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==}
+    dev: false
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
@@ -7607,8 +7625,8 @@ packages:
       vue: 3.3.4
     dev: false
 
-  /vue3-oop@1.0.5(injection-js@2.4.0)(vue@3.3.4):
-    resolution: {integrity: sha512-D9dpZizQge1lClZgFqMOfoy3PBtN4i2WKQ6q2nWsKCm3k10S1WOWeM+/gcNrMGH5q+tDUXn0z9upgeDYcePVqA==}
+  /vue3-oop@1.0.6(injection-js@2.4.0)(vue@3.3.4):
+    resolution: {integrity: sha512-jDgl2uq9KcfA+1yF5YKr6JhUyjvMHnivIdXBRPVcZ25LPQWVRXrtzozZSFZ51kjM7LlrG+e2lAbzTKtLzOfaVQ==}
     peerDependencies:
       injection-js: '*'
       vue: '3'

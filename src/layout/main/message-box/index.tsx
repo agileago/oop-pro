@@ -4,7 +4,23 @@ import { delay } from '@/common/util'
 import { If } from '@/common/component/if'
 import type { MessageRecord } from './type'
 import { MessageList } from '@/layout/main/message-box/list'
-import styles from './message-box.module.scss'
+import { css, createStyles } from '@/common/util/cssr'
+
+const styles = createStyles({
+  messageBox: [
+    css('.arco-popover-popup-content', { padding: 0 }),
+    css('.arco-list-item-meta', { alignItems: 'flex-start' }),
+    css('.arco-tabs-nav', {
+      padding: '14px 0 12px 16px',
+      borderBottom: '1px solid var(--color-neutral-3)',
+    }),
+    css('.arco-tabs-content', { paddingTop: 0 }, [
+      css('.arco-result-subtitle', {
+        color: 'rgb(var(--gray-6))',
+      }),
+    ]),
+  ],
+})
 
 interface TabItem {
   key: string
