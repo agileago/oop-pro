@@ -76,12 +76,9 @@ export class ThemeService extends VueService {
   }
 
   isDark = useDark({
-    selector: 'body',
-    attribute: 'arco-theme',
-    valueDark: 'dark',
-    valueLight: 'light',
     storageKey: config.storageKey.theme,
-    onChanged: (dark: boolean) => {
+    onChanged: (dark, defaultHandler, mode) => {
+      defaultHandler(mode)
       // 这里会立即执行
       if (dark) {
         this.theme.theme = 'dark'

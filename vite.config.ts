@@ -7,7 +7,6 @@ import checker from 'vite-plugin-checker'
 import vitePluginAliOss from 'vite-plugin-ali-oss'
 import legacy from '@vitejs/plugin-legacy'
 import svgLoader from 'vite-svg-loader'
-import { vitePluginForArco } from '@arco-plugins/vite-vue'
 
 export default defineConfig(({ command, mode }) => {
   const envPrefix = 'VUE_APP_'
@@ -16,7 +15,6 @@ export default defineConfig(({ command, mode }) => {
 
   const plugins: PluginOption[] = [
     vueJsx({ enableObjectSlots: false }),
-    vitePluginForArco({}),
     svgLoader({ defaultImport: 'url' }),
     tsconfigPaths(),
     checker({ typescript: true }),
