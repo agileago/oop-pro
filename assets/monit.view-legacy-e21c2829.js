@@ -1,1 +1,0 @@
-System.register(["./index-legacy-f6f296ed.js"],(function(e,t){"use strict";var n,r,s;return{setters:[e=>{n=e.G,r=e.l,s=e.J}],execute:function(){e("default",class extends n{render(){return r("div",null,[s("monit view")])}})}}}));
