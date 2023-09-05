@@ -58,7 +58,7 @@ export class NavMenu extends VueComponent {
           if (element.isLink) {
             node = (
               // @ts-ignore
-              <Link class={'block !p-0'} href={element.path} target={'_blank'}>
+              <Link class={'!block !p-0'} href={element.path} target={'_blank'}>
                 {menuDom}
               </Link>
             )

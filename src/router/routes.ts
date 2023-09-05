@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
+import type { BreadcrumbRoute } from '@arco-design/web-vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -8,6 +9,8 @@ declare module 'vue-router' {
     title?: string
     /* 是否在tabbar上面展示 */
     tabbar?: boolean
+    /* 面包屑列表 */
+    breadcrumbList?: Partial<BreadcrumbRoute>[]
   }
 }
 

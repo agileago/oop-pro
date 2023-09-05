@@ -15,7 +15,7 @@ import { Tabbar } from './tabbar'
 import { Footer } from '@/layout/main/footer'
 import { TransitionFade } from '@morev/vue-transitions'
 import { Setting } from '@/layout/main/setting'
-import { css, createStyles } from '@/common/util/cssr'
+import { css, createStyles } from '@/theme/cssinjs'
 
 const styles = createStyles({
   layoutSider: [
@@ -112,19 +112,17 @@ export default class MainLayout extends VueComponent {
               </If>
               <LayoutContent>
                 <RouterView>
-                  {{
-                    default: ({ Component, route }: any) => {
-                      if (!Component) return null
-                      return (
-                        <TransitionFade mode={'out-in'} appear>
-                          <Suspense>
-                            <Component
-                              key={route.fullPath + ts.pageKey}
-                            ></Component>
-                          </Suspense>
-                        </TransitionFade>
-                      )
-                    },
+                  {({ Component, route }: any) => {
+                    if (!Component) return null
+                    return (
+                      <TransitionFade mode={'out-in'} appear>
+                        <Suspense>
+                          <Component
+                            key={route.fullPath + ts.pageKey}
+                          ></Component>
+                        </Suspense>
+                      </TransitionFade>
+                    )
                   }}
                 </RouterView>
               </LayoutContent>

@@ -23,6 +23,9 @@ dependencies:
   css-render:
     specifier: ^0.15.12
     version: 0.15.12
+  dayjs:
+    specifier: ^1.11.9
+    version: 1.11.9
   expired-storage:
     specifier: ^1.0.2
     version: 1.0.2

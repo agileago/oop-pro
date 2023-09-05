@@ -7,7 +7,7 @@ import { ref } from 'vue'
 type ExtractName<T extends Record<string, any>> = {
   [key in keyof T]: key
 }
-type FormProps = FormInstance['$props']
+type FormProps = FormInstance['$props'] & { style?: any }
 
 @Autobind()
 export class FormService<T extends Record<string, any>> extends VueService {

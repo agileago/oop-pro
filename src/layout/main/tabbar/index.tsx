@@ -14,7 +14,7 @@ import { useStorage } from '@vueuse/core'
 import config from '@/config'
 import { TabBarItem } from './item'
 import { IconRefresh } from '@arco-design/web-vue/es/icon'
-import { createStyles, css } from '@/common/util/cssr'
+import { createStyles, css } from '@/theme/cssinjs'
 
 const styles = createStyles({
   tagsWrap: [

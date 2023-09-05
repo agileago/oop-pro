@@ -29,7 +29,7 @@ import { useFullscreen } from '@vueuse/core'
 import { MessageBox } from '../message-box'
 import { UserService } from '@/auth/user.service'
 import config from '@/config'
-import { createStyles, css } from '@/common/util/cssr'
+import { createStyles, css } from '@/theme/cssinjs'
 
 const styles = createStyles({
   messagePopover: [
