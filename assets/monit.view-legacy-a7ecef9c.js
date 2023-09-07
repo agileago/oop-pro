@@ -1,1 +1,0 @@
-System.register(["./index-legacy-3cc2b1e7.js"],(function(e,t){"use strict";var n,r,s;return{setters:[e=>{n=e.V,r=e.l,s=e.C}],execute:function(){e("default",class extends n{render(){return r("div",null,[s("monit view")])}})}}}));
