@@ -16,6 +16,7 @@ import {
   Form,
   Row,
   Space,
+  Divider,
 } from '@arco-design/web-vue'
 import type { FormInstance } from '@arco-design/web-vue'
 import { IconDown, IconUp } from '@arco-design/web-vue/es/icon'
@@ -36,6 +37,12 @@ export interface SearchFormAddiProps {
    * 重置后回调
    */
   onReset?: () => void
+  /* 默认查看更多 */
+  defaultSeeMore?: boolean
+  /* 最大列数 */
+  maxCount?: number
+  /* 是否显示分割线 default: true */
+  showDivider?: boolean
 }
 export interface SearchFormProps
   extends SearchFormAddiProps,
@@ -50,21 +57,24 @@ export class SearchForm extends VueComponent<SearchFormProps> {
     'hideReset',
     'colCount',
     'onReset',
+    'defaultSeeMore',
+    'maxCount',
   ]
   static inheritAttrs = false
 
-  @Mut() seeMore = false
+  @Mut() seeMore = !!this.props.defaultSeeMore
   @Link() form!: FormInstance
 
   elementQuery = new ElementMediaQueryService()
 
   @Computed()
   get colCount() {
+    const maxCount = this.props.maxCount || 0
     if (this.props.colCount !== undefined) {
       return this.props.colCount
     }
     if (this.elementQuery.isLg) {
-      return 4
+      return maxCount || 4
     }
     if (this.elementQuery.isMd) {
       return 3
@@ -106,6 +116,9 @@ export class SearchForm extends VueComponent<SearchFormProps> {
     const less3 = children.length < colCount
     if (less3) offsetLayout = 0
 
+    const searchIsNextLine =
+      colCount === 1 || (children.length % colCount === 0 && this.seeMore)
+
     const grid = children.map((k, i) => {
       return (
         <Col span={colSpan} class={i >= hiddenIndex ? '!hidden' : undefined}>
@@ -136,8 +149,10 @@ export class SearchForm extends VueComponent<SearchFormProps> {
     )
     grid.push(search)
 
+    const showDivider = this.props.showDivider ?? true
+
     return (
-      // @ts-ignore
+      /* @ts-ignore */
       <Form
         layout={'horizontal'}
         labelColProps={{ span: 6 }}
@@ -150,6 +165,9 @@ export class SearchForm extends VueComponent<SearchFormProps> {
         <div ref={this.elementQuery.elementRef}>
           <Row gutter={16}>{grid}</Row>
         </div>
+        {showDivider ? (
+          <Divider class={`${!searchIsNextLine ? '!mt-0' : ''}`}></Divider>
+        ) : null}
       </Form>
     )
   }

@@ -18,6 +18,8 @@ export function AutoBreadcrumb(props: AutoBreadcrumbProps) {
   const { routes, class: abc, style, ...rest } = props
   const items = routes || route.meta.breadcrumbList || []
 
+  console.log(rest)
+
   if (!items.length) return null
 
   return (
