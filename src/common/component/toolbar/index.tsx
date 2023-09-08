@@ -9,6 +9,7 @@ export const Toolbar: FunctionalComponent<AllowedComponentProps> & {
   Right: typeof Right
 } = (props, ctx) => {
   const children = ctx.slots.default?.() as VNode[]
+  console.log(children)
   const leftChild = children.find(k => k.type === Left)
   const rightChild = children.find(k => k.type === Right)
 

@@ -1,11 +1,14 @@
-import { VueComponent } from 'vue3-oop'
+import { Hook, Link, VueComponent } from 'vue3-oop'
 import {
+  Avatar,
   Button,
   Card,
   FormItem,
   Input,
   RangePicker,
   Select,
+  Space,
+  type TableColumnData,
   Upload,
 } from '@arco-design/web-vue'
 import { AutoBreadcrumb } from '@/common/component/auto-breadcrumb'
@@ -14,6 +17,9 @@ import { FormService } from '@/common/service/form.service'
 import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
 import { Toolbar } from '@/common/component/toolbar'
 import { IconDownload, IconPlus } from '@arco-design/web-vue/es/icon'
+import { AjaxTable } from '@/common/component/ajax-table'
+import { delay } from '@/common/util'
+import { mockData } from '@/module/list/search-table/mock'
 
 const contentTypeList = [
   {
@@ -62,11 +68,83 @@ export default class SearchTableView extends VueComponent {
       createdTime: [],
       status: '',
     },
-    onSubmitSuccess: model => {
-      console.log(model)
+    onSubmitSuccess: () => {
+      this.table.refresh(true)
     },
     cacheModel: true,
   })
+
+  @Link() table!: AjaxTable
+
+  @Hook('Mounted')
+  mount() {
+    console.log(this.table)
+  }
+
+  columns: TableColumnData[] = [
+    {
+      title: '集合编号',
+      dataIndex: 'number',
+    },
+    {
+      title: '集合名称',
+      dataIndex: 'name',
+    },
+    {
+      title: '内容体裁',
+      dataIndex: 'contentType',
+      render: data => {
+        return (
+          <Space>
+            <Avatar size={16} shape={'square'}>
+              <img
+                src="//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/581b17753093199839f2e327e726b157.svg~tplv-49unhts6dw-image.image"
+                alt=""
+              />
+            </Avatar>
+            {
+              contentTypeList.find(k => k.value == data.record.contentType)
+                ?.label
+            }
+          </Space>
+        )
+      },
+    },
+    {
+      title: '筛选方式',
+      dataIndex: 'filterType',
+      render: data => {
+        return filterTypeList.find(k => k.value === data.record.filterType)
+          ?.label
+      },
+    },
+    {
+      title: '内容量',
+      dataIndex: 'count',
+    },
+    {
+      title: '创建时间',
+      dataIndex: 'createdTime',
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      render: data => {
+        return statusList.find(k => k.value == data.record.status)?.label
+      },
+    },
+    {
+      title: '操作',
+      dataIndex: 'operations',
+      render: () => {
+        return (
+          <Button type={'text'} size={'small'}>
+            查看
+          </Button>
+        )
+      },
+    },
+  ]
 
   render() {
     const { fs } = this
@@ -134,6 +212,15 @@ export default class SearchTableView extends VueComponent {
               <Button v-slots={{ icon: () => <IconDownload /> }}>下载</Button>
             </Toolbar.Right>
           </Toolbar>
+          <AjaxTable
+            bordered={false}
+            columns={this.columns}
+            request={async () => {
+              await delay(3000)
+              return mockData
+            }}
+            ref={'table'}
+          ></AjaxTable>
         </Card>
       </div>
     )
