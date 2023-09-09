@@ -1,1 +1,0 @@
-System.register(["./index-legacy-7e9c2cdf.js"],(function(e,t){"use strict";var r,n,s;return{setters:[e=>{r=e.V,n=e.l,s=e.C}],execute:function(){e("default",class extends r{render(){return n("div",null,[s("card")])}})}}}));
