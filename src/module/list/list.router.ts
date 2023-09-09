@@ -6,19 +6,10 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'search-table',
-        name: 'SearchTable',
+        name: 'Workplace',
         component: () => import('./search-table/search-table.view'),
         meta: {
           title: '查询表格',
-          tabbar: true,
-        },
-      },
-      {
-        path: 'card',
-        name: 'Card',
-        component: () => import('./card/card.view'),
-        meta: {
-          title: '卡片列表',
           tabbar: true,
         },
       },

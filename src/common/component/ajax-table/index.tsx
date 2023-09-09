@@ -90,7 +90,6 @@ export class AjaxTable extends VueComponent<AjaxTableProps & TableProps> {
         pagination={this.pagination}
         loading={this.loading}
         data={this.data}
-        {...this.context.attrs}
         v-slots={this.context.slots}
       ></Table>
     )
