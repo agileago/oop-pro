@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import type { BreadcrumbRoute } from '@arco-design/web-vue'
+import type { RouteModule } from '@/router/type'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -40,11 +41,10 @@ const moduleRoutes = import.meta.glob('../module/**/*.router.ts', {
 })
 
 for (const moduleKey of Object.keys(moduleRoutes)) {
-  const childRoute = moduleRoutes[moduleKey as string] as RouteRecordRaw[]
+  const childRoute = moduleRoutes[moduleKey as string] as RouteModule
   if (!childRoute) continue
-  // @ts-ignore
-  const parent: string = childRoute.parent
-  const p = routes.find(k => k.name === parent)
+  const parent = childRoute.parent
+  const p = routes.find(k => k.name && k.name === parent)
   if (p) {
     if (!p.children) p.children = []
     p.children!.push(...childRoute)

@@ -3,9 +3,9 @@ import { useRouter } from 'vue-router'
 import { storage } from '@/common/util/storage'
 import config from '@/config'
 import { Message } from '@arco-design/web-vue'
-import type { IMenuItem } from '@/types'
 import { IconLink, IconList } from '@arco-design/web-vue/es/icon'
 import { delay } from '@/common/util'
+import type { IMenuItem } from '@/router/type'
 
 const findMenuOpenKeysMap = (menuTree: IMenuItem[]) => {
   const result = new Map<string, string[]>()

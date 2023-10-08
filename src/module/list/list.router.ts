@@ -1,6 +1,6 @@
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteModule } from '@/router/type'
 
-const routes: RouteRecordRaw[] = [
+const routes: RouteModule = [
   {
     path: 'list',
     children: [
@@ -17,7 +17,6 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
-// @ts-ignore
 routes.parent = 'main'
 
 export default routes

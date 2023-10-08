@@ -1,6 +1,6 @@
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteModule } from '@/router/type'
 
-const routes: RouteRecordRaw[] = [
+const routes: RouteModule = [
   {
     path: '/:pathMatch(.*)*',
     name: 'notFound',

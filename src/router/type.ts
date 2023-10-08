@@ -1,4 +1,11 @@
+import type { RouteRecordRaw } from 'vue-router'
 import type { VNodeChild } from 'vue'
+
+// 路由模块
+export interface RouteModule extends Array<RouteRecordRaw> {
+  /* 父路由名称 */
+  parent?: string
+}
 
 export interface IMenuItem {
   /* 菜单名称 */

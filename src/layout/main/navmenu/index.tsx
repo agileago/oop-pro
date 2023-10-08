@@ -2,10 +2,10 @@ import { Autobind, Computed, injectService, Mut, VueComponent } from 'vue3-oop'
 import { Link, Menu, MenuItem, SubMenu } from '@arco-design/web-vue'
 import { ThemeService } from '@/layout/main/theme.service'
 import { UserService } from '@/auth/user.service'
-import type { IMenuItem } from '@/types'
 import type { VNodeChild } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { watch } from 'vue'
+import type { IMenuItem } from '@/router/type'
 
 @Autobind()
 export class NavMenu extends VueComponent {
