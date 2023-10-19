@@ -27,7 +27,6 @@
     "tailwind-variants": "^0.1.14",
     "ts-essentials": "^9.4.0",
     "tslib": "^2.6.2",
-    "typestyle": "^2.4.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
     "vue3-oop": "^1.0.6",
