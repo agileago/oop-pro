@@ -4,8 +4,6 @@
  * */
 import type { Project } from 'ts-gear'
 import { generateRequestFunctionName } from 'ts-gear/lib/tool/generateRequestFunctionName'
-// @ts-ignore
-import prettier from '../../.prettierrc'
 import * as _ from 'lodash'
 
 // 调用的所有api
@@ -46,7 +44,6 @@ function createStandardProjects(projects: Partial<Project>[]) {
       importRequesterStatement: `import { ${
         _.camelCase(name) + 'Requester'
       }, type AxiosRequestConfig } from "../http"`,
-      prettierConfig: prettier,
       // 生成请求函数名称
       generateRequestFunctionName(arg) {
         return (

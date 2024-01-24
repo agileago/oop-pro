@@ -30,6 +30,7 @@ import { MessageBox } from '../message-box'
 import { UserService } from '@/auth/user.service'
 import config from '@/config'
 import { createStyles, css } from '@/theme/cssinjs'
+import userPng from './user.png'
 
 const styles = createStyles({
   messagePopover: [
@@ -187,10 +188,7 @@ export class Navbar extends VueComponent {
               {{
                 default: () => (
                   <Avatar size={32} class={'mr-2 cursor-pointer'}>
-                    <img
-                      alt="avatar"
-                      src="//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"
-                    />
+                    <img alt="avatar" src={userPng} />
                   </Avatar>
                 ),
                 content: () => (
